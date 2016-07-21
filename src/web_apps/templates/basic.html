@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记账</title>
+    <link href="../static/css/basic_table.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+function show_confirm(para)
+{
+var r=confirm("是否确认删除!");
+if (r==true)
+  {
+  window.location.href='/bills/delete/id='+para;
+  alert("删除成功！")
+  }
+else
+  {
+  alert("取消删除!");
+  }
+}
+</script>
+</head>
+<body>
+<div>
+    <table class="bordered">
+        <thead>
+        <tr>
+            <th>合计条数</th>
+            <th>花费总数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ totle.length }}</td>
+            <td>{{ totle.sum }}</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<div>
+    <table class="bordered">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>日期</th>
+            <th>事件</th>
+            <th>花费</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for every in details %}
+        <tr>
+
+            <td>{{ every.id }}</td>
+            <td>{{ every.date }}</td>
+            <td>{{ every.action }}</td>
+            <td>{{ every.cast }}</td>
+            <!--<td><a href="/bills/delete/id={{ every.id }}"><button>删除</button></a></td>-->
+            <td><button onclick="show_confirm({{ every.id }})">删除</button></td>
+            {% endfor %}
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<div>
+    <form method="POST" action="/bills/upload">
+        <input type="date" name="new_date" placeholder="日期" />{% csrf_token %}
+        <input type="text" name="new_action" placeholder="事件" />{% csrf_token %}
+        <input type="text" name="new_cast" placeholder="花费" />{% csrf_token %}
+        <input type="submit" value="提交" />
+    </form>
+</div>
+
+
+</body>
+</html>
