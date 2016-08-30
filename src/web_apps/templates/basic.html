@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 
 
@@ -6,6 +7,10 @@
     <meta charset="UTF-8">
     <title>记账</title>
     <link href="../static/css/basic_table.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap-3.3.5-dist/css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'bootstrap-3.3.5-dist/css/bootstrap-theme.css' %}" rel="stylesheet" />
+    <scprit src="{% static 'bootstrap-3.3.5-dist/js/jquery-3.1.0.min.js' %}"></scprit>
+    <scprit src="{% static 'bootstrap-3.3.5-dist/js/bootstrap.js' %}"></scprit>
     <script type="text/javascript">
 function show_confirm(para)
 {
@@ -24,7 +29,7 @@ else
 </head>
 <body>
 <div>
-    <table class="bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>合计条数</th>
@@ -41,7 +46,7 @@ else
     </table>
 </div>
 <div>
-    <table class="bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>序号</th>
