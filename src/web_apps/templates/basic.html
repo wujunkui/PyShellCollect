@@ -6,25 +6,36 @@
 <head>
     <meta charset="UTF-8">
     <title>记账</title>
-    <link href="../static/css/basic_table.css" rel="stylesheet" type="text/css">
+    <!--<link href="../static/css/basic_table.css" rel="stylesheet" type="text/css">-->
+    <script src="{% static 'bootstrap-3.3.5-dist/js/jquery-3.1.0.min.js' %}"></script>
     <link href="{% static 'bootstrap-3.3.5-dist/css/bootstrap.css' %}" rel="stylesheet" />
     <link href="{% static 'bootstrap-3.3.5-dist/css/bootstrap-theme.css' %}" rel="stylesheet" />
-    <scprit src="{% static 'bootstrap-3.3.5-dist/js/jquery-3.1.0.min.js' %}"></scprit>
-    <scprit src="{% static 'bootstrap-3.3.5-dist/js/bootstrap.js' %}"></scprit>
-    <script type="text/javascript">
-function show_confirm(para)
-{
-var r=confirm("是否确认删除!");
-if (r==true)
-  {
-  window.location.href='/bills/delete/id='+para;
-  alert("删除成功！")
-  }
-else
-  {
-  alert("取消删除!");
-  }
-}
+    <!--<link href="{% static 'datatable/css/datatable.min.css' %}" rel="stylesheet" />-->
+    <link href="{% static 'datatable/css/datatable-bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'jquery-ui/jquery-ui.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'jquery-ui/jquery-ui.theme.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'jquery-ui/jquery-ui.structure.min.css' %}" rel="stylesheet" />
+    <script src="{% static 'bootstrap-3.3.5-dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'datatable/js/datatable.min.js' %}"></script>
+    <script src="{% static 'datatable/js/datatable.jquery.min.js' %}"></script>
+    <script src="{% static 'jquery-ui/jquery-ui.min.js' %}"></script>
+    <script>
+    $('#MyTable').datatable();
+
+    function show_confirm(para)
+    {
+    var r=confirm("是否确认删除!");
+    if (r==true)
+      {
+      window.location.href='/bills/delete/id='+para;
+      alert("删除成功！")
+      }
+    else
+      {
+      alert("取消删除!");
+      }
+    }
+
 </script>
 </head>
 <body>
@@ -46,7 +57,7 @@ else
     </table>
 </div>
 <div class="container">
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="MyTable">
         <thead>
         <tr>
             <th>序号</th>
@@ -60,7 +71,7 @@ else
         {% for every in details %}
         <tr>
 
-            <td>{{ every.id }}</td>
+            <td ondblclick="test();">{{ every.id }}</td>
             <td>{{ every.date }}</td>
             <td>{{ every.action }}</td>
             <td>{{ every.cast }}</td>
@@ -81,6 +92,36 @@ else
         <input type="submit" value="提交" />
     </form>
 </div>
+
+
+<input type="button" name="" id="" onclick="test();" />
+
+<div id="test_dialog" style="display:none;">
+    hellow
+</div>
+<script>
+    function test(){
+    $('#test_dialog').dialog();
+
+
+    }
+</script>
+
+<script>
+    $('#MyTable').datatable({
+    pageSize: 15,
+    sort: '*',
+    option:{"onclick":"test();"}
+});
+    $("#MyTable td").attr("onclick","test();")
+    <!--var td_lst = $('#MyTable').find('td');-->
+    <!--console.log(td_lst);-->
+    <!--for(i=0;i<length(td_lst);i++){-->
+    <!--console.log(td);-->
+    <!--$(td).attr("onclick","test();");-->
+    <!--}-->
+
+</script>
 
 
 </body>
