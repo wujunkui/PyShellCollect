@@ -10,10 +10,12 @@ def test(request):
 
 def creat_data(date,action,cast):
     bill = Bill()
+    # bill.date = datetime.now().date()
+    print(type(date))
     if not date:
         bill.date = datetime.now().date()
     else:
-        bill.date = date
+        bill.date = datetime.strptime(date,"%m/%d/%Y")
     bill.action = action
     bill.cast = cast
     bill.save()
@@ -30,7 +32,9 @@ def show_data(request):
     return render(request,'basic.html',{'details':data_lst,'totle':totle_dic})
 
 def insert_data(request):
+    print(request.POST)
     if request.method == 'POST':
+        print('i am in')
         creat_data(request.POST['new_date'],request.POST['new_action'],request.POST['new_cast'])
     return HttpResponseRedirect('/bills/info')
 
