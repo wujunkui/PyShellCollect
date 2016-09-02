@@ -10,8 +10,8 @@
     <script src="{% static 'bootstrap-3.3.5-dist/js/jquery-3.1.0.min.js' %}"></script>
     <link href="{% static 'bootstrap-3.3.5-dist/css/bootstrap.css' %}" rel="stylesheet" />
     <link href="{% static 'bootstrap-3.3.5-dist/css/bootstrap-theme.css' %}" rel="stylesheet" />
-    <link href="{% static 'datatable/css/datatable.min.css' %}" rel="stylesheet" />
-    <!--<link href="{% static 'datatable/css/datatable-bootstrap.min.css' %}" rel="stylesheet" />-->
+    <!--<link href="{% static 'datatable/css/datatable.min.css' %}" rel="stylesheet" />-->
+    <link href="{% static 'datatable/css/datatable-bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'jquery-ui/jquery-ui.min.css' %}" rel="stylesheet" />
     <link href="{% static 'jquery-ui/jquery-ui.theme.min.css' %}" rel="stylesheet" />
     <link href="{% static 'jquery-ui/jquery-ui.structure.min.css' %}" rel="stylesheet" />
@@ -20,24 +20,6 @@
     <!--<script src="{% static 'DataTables-1.10.12/media/js/jquery.dataTables.js' %}"></script>-->
     <script src="{% static 'datatable/js/datatable.jquery.min.js' %}"></script>
     <script src="{% static 'jquery-ui/jquery-ui.min.js' %}"></script>
-    <script>
-    $('#MyTable').datatable();
-
-    function show_confirm(para)
-    {
-    var r=confirm("是否确认删除!");
-    if (r==true)
-      {
-      window.location.href='/bills/delete/id='+para;
-      alert("删除成功！")
-      }
-    else
-      {
-      alert("取消删除!");
-      }
-    }
-
-</script>
 </head>
 <body>
 
@@ -92,7 +74,8 @@
     </div>
 
 </nav>
-
+{% block content %}
+{% endblock %}
 <div class="container">
     <table class="table table-bordered">
         <thead>
@@ -214,17 +197,17 @@
     }
 </script>
 
-<!--<script>-->
-    <!--$('#MyTable').datatable({-->
-    <!--pageSize: 15,-->
-    <!--sort: '*',-->
-    <!--option:{"onclick":"test();"}-->
-<!--});-->
-   <!--// $("#MyTable td").attr("onclick","test();")-->
-    <!--$("#MyTable tr td:nth-child(2)").attr("onclick","test();")-->
+<script>
+    $('#MyTable').datatable({
+    pageSize: 15,
+    sort: '*',
+    option:{"onclick":"test();"}
+});
+   // $("#MyTable td").attr("onclick","test();")
+   // $("#MyTable tr td:nth-child(2)").attr("onclick","test();")
 
 
-<!--</script>-->
+</script>
 
 
 </body>

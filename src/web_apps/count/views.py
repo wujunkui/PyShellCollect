@@ -29,7 +29,7 @@ def show_data(request):
         sum_num += float(every.cast)
 
     totle_dic = {'length':len(data_lst),'sum':sum_num}
-    return render(request,'basic.html',{'details':data_lst,'totle':totle_dic})
+    return render(request,'home.html',{'details':data_lst,'totle':totle_dic})
 
 def insert_data(request):
     print(request.POST)

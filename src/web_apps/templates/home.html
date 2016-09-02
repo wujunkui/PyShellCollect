@@ -1,0 +1,102 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+
+<script src="{% static 'myjs/bills.js' %}"></script>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>合计条数</th>
+            <th>花费总数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ totle.length }}</td>
+            <td>{{ totle.sum }}</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<div class="container">
+    <div >
+        <button class="btn btn-success" id="add_data" onclick="test2();">Add</button>
+    </div>
+    <table class="table table-bordered" id="MyTable">
+        <thead>
+        <tr>
+            <!--<th>序号</th>-->
+            <th>日期</th>
+            <th>事件</th>
+            <th>花费</th>
+            <th style="width:5%;">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for every in details %}
+        <tr>
+
+            <!--<td>{{ every.id }}</td>-->
+            <td>{{ every.date|date:"Y-m-d" }}</td>
+            <td>{{ every.action }}</td>
+            <td>{{ every.cast }}</td>
+            <!--<td><a href="/bills/delete/id={{ every.id }}"><button>删除</button></a></td>-->
+            <td><button class="btn btn-danger" onclick="show_confirm({{ every.id }})">删除</button></td>
+            {% endfor %}
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加数据</h4>
+      </div>
+      <div class="modal-body">
+        <form id="insert" method="POST" action="#" class="form-group">
+            <label for="date_select">日期</label>
+            <input id="date_select" class="form-control" type="text" name="new_date" placeholder="now" />
+            <label for="action">事件</label>
+            <input id="action" type="text" class="form-control" name="new_action" placeholder="买菜" />
+            <label for="cast">花费</label>
+            <input id="cast" type="text" class="form-control" name="new_cast" placeholder="15.0" />
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="insert_data();">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div id="" style="display:none;">-->
+    <!--<form method="POST" action="#" >-->
+        <!--<input class="select" type="text" name="new_date" placeholder="日期" />{% csrf_token %}-->
+        <!--<input type="text" name="new_action" placeholder="事件" />{% csrf_token %}-->
+        <!--<input type="text" name="new_cast" placeholder="花费" />{% csrf_token %}-->
+        <!--&lt;!&ndash;<input type="submit" value="提交" />&ndash;&gt;-->
+    <!--</form>-->
+<!--</div>-->
+
+
+
+
+<div id="test_dialog" style="display:none;">
+    hellow
+</div>
+
+
+
+
+{% endblock %}
