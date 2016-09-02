@@ -3,7 +3,6 @@
 
 {% block content %}
 
-<script src="{% static 'myjs/bills.js' %}"></script>
 
 <div class="container">
     <table class="table table-bordered">
@@ -24,7 +23,7 @@
 </div>
 <div class="container">
     <div >
-        <button class="btn btn-success" id="add_data" onclick="test2();">Add</button>
+        <button class="btn btn-success" id="add_data" onclick="eject('#dataAdd');">Add</button>
     </div>
     <table class="table table-bordered" id="MyTable">
         <thead>
@@ -42,7 +41,7 @@
 
             <!--<td>{{ every.id }}</td>-->
             <td>{{ every.date|date:"Y-m-d" }}</td>
-            <td>{{ every.action }}</td>
+            <td ondblclick="eject('#act_modify');">{{ every.action }}</td>
             <td>{{ every.cast }}</td>
             <!--<td><a href="/bills/delete/id={{ every.id }}"><button>删除</button></a></td>-->
             <td><button class="btn btn-danger" onclick="show_confirm({{ every.id }})">删除</button></td>
@@ -55,7 +54,7 @@
 </div>
 
   <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="dataAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -74,12 +73,33 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="insert_data();">Add</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="insert_data();">Add</button>
       </div>
     </div>
   </div>
 </div>
 
+
+<div class="modal fade" id="act_modify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="actModalLabel">修改事件</h4>
+      </div>
+      <div class="modal-body">
+        <form id="actModify" method="POST" action="#" class="form-group">
+            <label for="actModifyInput">事件</label>
+            <input id="actModifyInput" type="text" class="form-control" name="new_action" placeholder="买菜" />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="update_data('#actModifyInput');">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--<div id="" style="display:none;">-->
     <!--<form method="POST" action="#" >-->
         <!--<input class="select" type="text" name="new_date" placeholder="日期" />{% csrf_token %}-->
@@ -88,13 +108,7 @@
         <!--&lt;!&ndash;<input type="submit" value="提交" />&ndash;&gt;-->
     <!--</form>-->
 <!--</div>-->
-
-
-
-
-<div id="test_dialog" style="display:none;">
-    hellow
-</div>
+<script src="{% static 'myjs/bills.js' %}"></script>
 
 
 
