@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^bills/info$', views.show_data),
     url(r'^$', views.test),
     url(r'^bills/upload$', views.insert_data),
-    url(r'^bills/delete/id=(\d+)', views.delet_data),
+    url(r'^bills/delete', views.delet_data),
 ]

@@ -38,7 +38,9 @@ def insert_data(request):
         creat_data(request.POST['new_date'],request.POST['new_action'],request.POST['new_cast'])
     return HttpResponseRedirect('/bills/info')
 
-def delet_data(request,id):
+def delet_data(request):
+    id = request.POST.get('id')
     p = Bill.objects.filter(id=id)
     p.delete()
-    return HttpResponseRedirect('/bills/info')
+    # return HttpResponseRedirect('/bills/info')
+    return HttpResponse('success')

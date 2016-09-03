@@ -18,6 +18,11 @@ function eject(id){
     $(id).modal();
 }
 
+function ejectDel(data_id) {
+    $('#delet').modal();
+    $('#sure_button').attr('onclick','deleteData('+data_id+');');
+}
+
 
 function test2(){
     $('#myModal').modal();
@@ -33,7 +38,7 @@ function insert_data(){
     data:{
         "new_date":new_date,
         "new_action":action,
-        "new_cast":cast,
+        "new_cast":cast
     },
     success:function(res){
         location.reload();
@@ -46,5 +51,15 @@ function update_data(id){
     console.log(input_val);
 }
 
-
-
+function deleteData(data_id) {
+    $.ajax({
+        type:'post',
+        url:'/bills/delete',
+        data:{
+            'id':data_id
+        },
+        success:function (res) {
+            location.reload();
+        }
+    })
+}
