@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="css/jquery.dataTables.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>head1</th>
+            <th>head2</th>
+            <th>head3</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td ondblclick="alert('SB');">2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script>
+        $('table').DataTable();
+    </script>
+</body>
+</html>

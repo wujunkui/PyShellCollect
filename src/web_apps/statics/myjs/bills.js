@@ -2,11 +2,7 @@
 $('#date_select').datepicker();
     //console.log($('#date_select').attr('name'));
 
-//$('#MyTable').datatable({
-//    pageSize: 15,
-//    sort: '*',
-//    option:{"onclick":"test();"}
-//});
+$('#MyTable').DataTable();
 // $("#MyTable td").attr("onclick","test();")
 // $("#MyTable tr td:nth-child(2)").attr("onclick","test();")
 
