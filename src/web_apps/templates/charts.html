@@ -1,9 +1,12 @@
 {% extends 'basic.html' %}
 {% load staticfiles %}
 {% block content %}
+    <div class="hidden" id="chardata">{{ data_lst }}</div>
 
+    <div id="billCharts" style="height: 400px"></div>
 
-
-
+    <script src="{% static 'Highcharts-4.2.6/js/highcharts.js' %}"></script>
+    <script src="{% static 'Highcharts-4.2.6/js/highcharts-3d.js' %}"></script>
+    <script src="{% static 'myjs/mycharts.js' %}"></script>
 
 {% endblock %}

@@ -1,9 +1,13 @@
+# -*- coding:utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from datetime import datetime
 from models import Bill
-
+import sys
+import json
 # Create your views here.
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def test(request):
     return render(request,'basic.html',{})
@@ -34,7 +38,7 @@ def show_data(request):
 def insert_data(request):
     print(request.POST)
     if request.method == 'POST':
-        print('i am in')
+        # print('i am in')
         creat_data(request.POST['new_date'],request.POST['new_action'],request.POST['new_cast'])
     return HttpResponseRedirect('/bills/info')
 
@@ -44,3 +48,21 @@ def delet_data(request):
     p.delete()
     # return HttpResponseRedirect('/bills/info')
     return HttpResponse('success')
+
+def charts_index(request):
+    bill_objs = Bill.objects.all()
+    data_dict = {}
+    data_lst = []
+    for bill in bill_objs:
+        key = bill.action
+        money = bill.cast
+        if data_dict.get(key):
+            data_dict[key].append(money)
+        else:
+            data_dict[key] = [money]
+    for action,money_lst in data_dict.items():
+        sum_money = sum(mon for mon in money_lst)
+        data_lst.append([action.encode('utf-8'),sum_money])
+
+    print json.dumps(data_lst,ensure_ascii=False)
+    return render(request,'charts.html',{"data_lst":json.dumps(data_lst,ensure_ascii=False)})

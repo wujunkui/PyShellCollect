@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^$', views.test),
     url(r'^bills/upload$', views.insert_data),
     url(r'^bills/delete', views.delet_data),
+    url(r'^bills/charts', views.charts_index),
 ]
