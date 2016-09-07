@@ -2,12 +2,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from datetime import datetime
-from models import Bill
+from count.models import Bill
 import sys
 import json
 # Create your views here.
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 def test(request):
     return render(request,'basic.html',{})
@@ -62,7 +60,7 @@ def charts_index(request):
             data_dict[key] = [money]
     for action,money_lst in data_dict.items():
         sum_money = sum(mon for mon in money_lst)
-        data_lst.append([action.encode('utf-8'),sum_money])
-
-    print json.dumps(data_lst,ensure_ascii=False)
+        data_lst.append([action,sum_money])
+    print(data_lst)
+    # print json.dumps(data_lst,ensure_ascii=False)
     return render(request,'charts.html',{"data_lst":json.dumps(data_lst,ensure_ascii=False)})

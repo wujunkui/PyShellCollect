@@ -2,7 +2,13 @@
 $('#date_select').datepicker();
     //console.log($('#date_select').attr('name'));
 
-$('#MyTable').DataTable();
+$('#MyTable').DataTable({
+    "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+"<'row'<'col-sm-12'tr>>" +
+"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+});
+$('.toolbar').html('<button>success</button>');
+//$('.dataTables_filter').append('<button class="btn btn-primary" style="float:right;">Add</button>');
 // $("#MyTable td").attr("onclick","test();")
 // $("#MyTable tr td:nth-child(2)").attr("onclick","test();")
 
