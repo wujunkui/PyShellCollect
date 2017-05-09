@@ -1,1 +1,0 @@
-Display Food Values+显示怪物攻击、HP+显示燃料
